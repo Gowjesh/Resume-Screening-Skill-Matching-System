@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Resume Screening & Skill Matching System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>Resume Screening & Skill Matching System</h1>
+    <p>
+      Automatically screen resumes and match candidates to job descriptions
+      </p>
+  </header>
+
+  <main>
+    <div class="card">
+        <h2>Candidate Resume (Upload)</h2>
+        <input type="file" id="resumeFile"/>
+        <p class="hint">Upload resume above...</p>
+    </div>
+
+
+    <div class="card">
+      <h2>Job Description</h2>
+      <textarea id="job" placeholder="Paste job description here..."></textarea>
+    </div>
+
+    <button onclick="matchSkills()">Match Skills</button>
+
+    <div id="result" class="result hidden">
+      <h2>Match Result</h2>
+      <p>Skill Match Score</p>
+      <div id="score" class="score">0%</div>
+      <p id="status"></p>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 Resume Screening System | AI Powered Hiring Assistant</p>
+  </footer>
+
+    <!-- it support for docx reader -->
+  <script src="https://unpkg.com/mammoth/mammoth.browser.min.js"></script>
+
+  <!-- it support for pdf reader -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script> 
+
+  <script src="script.js"></script>
+</body>
+</html>
