@@ -18,21 +18,29 @@ class AnalysisResult(BaseModel):
 class AnalysisData(BaseModel):
     results: List[AnalysisResult]
 
-model = None
-
-def get_model():
-    global model
-    if model is None:
-        model = SentenceTransformer("all-MiniLM-L6-v2")
-    return model
+# Force CPU usage to save memory on Render Free Tier
+torch.set_num_threads(1)
 
 app = FastAPI()
+
+# Load model at startup to avoid memory spikes during requests
+print("Loading AI Model...")
+model = SentenceTransformer("all-MiniLM-L6-v2", device="cpu")
+print("AI Model Loaded Successfully")
+
+@app.get("/")
+async def root():
+    return {
+        "message": "Resume AI Matcher API is Online",
+        "status": "active",
+        "model": "all-MiniLM-L6-v2"
+    }
 
 app.add_middleware(
     CORSMiddleware, 
     allow_origins=["*"], 
     allow_credentials=True, 
-    allow_methods=["*"], 
+    allow_methods=["GET", "POST", "OPTIONS"], 
     allow_headers=["*"]
 )
 
@@ -74,9 +82,8 @@ def score_match(text, jd):
     c_text = clean_text(text)
     c_jd = clean_text(jd)
     
-    current_model = get_model()
-    embeddings1 = current_model.encode(c_text, convert_to_tensor=True)
-    embeddings2 = current_model.encode(c_jd, convert_to_tensor=True)
+    embeddings1 = model.encode(c_text, convert_to_tensor=True)
+    embeddings2 = model.encode(c_jd, convert_to_tensor=True)
     semantic_score = util.cos_sim(embeddings1, embeddings2).item()
     
     jd_keywords = get_keywords(c_jd)
