@@ -6,6 +6,7 @@ from openpyxl import Workbook, load_workbook
 from pydantic import BaseModel
 from typing import List
 import pdfplumber, docx, io, zipfile, os, tempfile, requests, re
+import torch, gc
 
 class AnalysisResult(BaseModel):
     filename: str
@@ -23,17 +24,18 @@ torch.set_num_threads(1)
 
 app = FastAPI()
 
-# Load model at startup to avoid memory spikes during requests
-print("Loading AI Model...")
-model = SentenceTransformer("all-MiniLM-L6-v2", device="cpu")
-print("AI Model Loaded Successfully")
+# Load an ultra-light model at startup to fit comfortably in 512MB RAM
+print("Loading Light AI Model...")
+model = SentenceTransformer("paraphrase-MiniLM-L3-v2", device="cpu")
+gc.collect()
+print("Light AI Model Loaded Successfully")
 
 @app.get("/")
 async def root():
     return {
         "message": "Resume AI Matcher API is Online",
         "status": "active",
-        "model": "all-MiniLM-L6-v2"
+        "model": "paraphrase-MiniLM-L3-v2"
     }
 
 app.add_middleware(
