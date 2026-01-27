@@ -25,6 +25,7 @@ The Resume Screening & Skill Matching System is a full-stack web application tha
 **Day 1**
 
 A basic and user-friendly frontend was created using HTML, CSS, and JavaScript. Users can upload TXT and DOCX resume files and enter job descriptions through a text area. The UI was designed with simplicity in mind, and future support for Excel files and Google Drive links was planned. here first used the mammoth model.
+
 <img width="1890" height="906" alt="Screenshot 2026-01-24 091257" src="https://github.com/user-attachments/assets/7e2bf7f7-e33f-4eb3-8c7c-7cd35df9ea17" />
 
 **Day 2**
@@ -38,6 +39,7 @@ The backend was implemented using FastAPI, and the SentenceTransformer (all-Mini
 **Day 4**
 
 For adding all type of files in DOCX,PDF,TXT and Zip but It have backend problem. So, the Python virtual environment (venv) was created to manage all dependencies safely. Required libraries for NLP, document processing, Excel handling, and Google Drive downloads were installed inside the virtual environment to ensure consistent execution across systems.
+
 <img width="1245" height="893" alt="Screenshot 2026-01-24 102551" src="https://github.com/user-attachments/assets/782450ae-1b7d-4ac7-9d7a-7d179222546e" />
 
 **Day 5**
@@ -51,7 +53,9 @@ The frontend UI was improved by displaying resumes in a card-based layout. Each 
 **Day 7**
 
 Only the Frontend can deploy in the vercel. The scoring logic was optimized to improve accuracy. Only top-matching resumes are displayed, and the system highlights matched skills and missing skills from each resume. Final testing confirmed reliable performance across all supported file formats. Atlast push the Project into the GitHub connect with vercel.
+
 <img width="1137" height="906" alt="Screenshot 2026-01-27 195721" src="https://github.com/user-attachments/assets/89da67c4-71ed-409e-980e-fd2365952084" />
+
 <img width="1112" height="643" alt="Screenshot 2026-01-27 195731" src="https://github.com/user-attachments/assets/3dfbe41a-1dda-4471-8689-2c6a44f52da5" />
 
 ---
