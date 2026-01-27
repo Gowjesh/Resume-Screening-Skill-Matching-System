@@ -2,10 +2,9 @@ let analysisResults = [], uploadedFiles = [], driveLinks = [];
 
 const API =
   window.location.hostname === "127.0.0.1" ||
-  window.location.hostname === "localhost"
+    window.location.hostname === "localhost"
     ? "http://127.0.0.1:8000"
-    : (import.meta?.env?.VITE_API_URL || "https://resume-screening-skill-matching-system.onrender.com");
-
+    : "https://resume-screening-skill-matching-system.onrender.com";
 
 async function triggerTypeUpload(accept) {
   const input = document.getElementById("masterFileInput");
