@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <title>Resume Matcher</title>
@@ -9,6 +10,7 @@
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 </head>
+
 <body>
   <header>
     <h1>Resume Matcher</h1>
@@ -41,10 +43,6 @@
         <input type="text" id="excelDriveLink" placeholder="Paste Google Drive link here..." />
         <button onclick="addLinkConfirm()">Add Link</button>
       </div>
-      <div id="selectedFiles" class="selected-files-section hidden">
-        <h3>Selected Files</h3>
-        <div id="filesList" class="files-list"></div>
-      </div>
       <div id="filePreviewSection" class="file-preview-section hidden">
         <h3>File Preview</h3>
         <div id="fileGrid" class="file-grid"></div>
@@ -69,7 +67,7 @@
     <section id="result" class="results-section">
       <div class="results-header">
         <h2>Analysis Results</h2>
-        <button id="downloadBtn" class="download-btn" onclick="downloadExcel()" style="display: none;">
+        <button id="downloadReportBtn" class="download-btn hidden" onclick="downloadExcelReport()">
           Download Excel Report
         </button>
       </div>
@@ -83,4 +81,5 @@
   <input type="file" id="masterFileInput" multiple accept=".pdf,.docx,.doc,.txt,.zip" style="display: none;" />
   <script src="script.js"></script>
 </body>
+
 </html>

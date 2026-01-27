@@ -1,15 +1,17 @@
 let analysisResults = [], uploadedFiles = [], driveLinks = [];
 
-const API =
-  window.location.hostname === "127.0.0.1" ||
-    window.location.hostname === "localhost"
-    ? "http://127.0.0.1:8000"
-    : "https://resume-screening-skill-matching-system.onrender.com";
+const API = window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost"
+  ? "http://127.0.0.1:8000"
+  : "https://resume-screening-skill-matching-system.onrender.com";
 
 async function triggerTypeUpload(accept) {
   const input = document.getElementById("masterFileInput");
   input.accept = accept;
-  input.onchange = (e) => { uploadedFiles = [...uploadedFiles, ...Array.from(e.target.files)]; renderUI(); e.target.value = null; };
+  input.onchange = (e) => {
+    uploadedFiles = [...uploadedFiles, ...Array.from(e.target.files)];
+    renderUI();
+    e.target.value = null;
+  };
   input.click();
 }
 
@@ -21,7 +23,12 @@ function toggleDriveInput() {
 
 function addLinkConfirm() {
   const input = document.getElementById("excelDriveLink");
-  if (input.value.trim()) { driveLinks.push(input.value.trim()); input.value = ""; document.getElementById("driveLinkEntry").classList.add("hidden"); renderUI(); }
+  if (input.value.trim()) {
+    driveLinks.push(input.value.trim());
+    input.value = "";
+    document.getElementById("driveLinkEntry").classList.add("hidden");
+    renderUI();
+  }
 }
 
 async function matchFolder() {
@@ -72,8 +79,10 @@ async function matchFolder() {
     renderResultsGrid();
 
     if (analysisResults.length > 0) {
-      document.getElementById("downloadReportBtn").classList.remove("hidden");
-      document.getElementById("result").scrollIntoView({ behavior: 'smooth' });
+      const dlBtn = document.getElementById("downloadReportBtn");
+      if (dlBtn) dlBtn.classList.remove("hidden");
+      const resSec = document.getElementById("result");
+      if (resSec) resSec.scrollIntoView({ behavior: 'smooth' });
     } else {
       alert("No resumes found to analyze. Check your folder/link.");
     }
@@ -93,6 +102,7 @@ function applyLimit() {
 function renderResultsGrid() {
   const grid = document.getElementById("resultsGrid");
   const limitInput = document.getElementById("topLimit");
+  if (!grid || !limitInput) return;
   const limit = parseInt(limitInput.value) || 10;
 
   grid.innerHTML = "";
@@ -133,7 +143,9 @@ function renderResultsGrid() {
 }
 
 function renderUI() {
-  const grid = document.getElementById("fileGrid"), section = document.getElementById("filePreviewSection");
+  const grid = document.getElementById("fileGrid");
+  const section = document.getElementById("filePreviewSection");
+  if (!grid || !section) return;
   grid.innerHTML = "";
   if (!uploadedFiles.length && !driveLinks.length) return section.classList.add("hidden");
   section.classList.remove("hidden");
