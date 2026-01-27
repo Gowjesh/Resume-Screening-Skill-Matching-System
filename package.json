@@ -1,0 +1,26 @@
+{
+  "name": "resume-screening-system",
+  "version": "1.0.0",
+  "description": "AI-powered resume screening and skill matching system",
+  "main": "api/index.py",
+  "scripts": {
+    "start": "python backend/main.py",
+    "dev": "python backend/main.py",
+    "build": "echo 'Build complete'"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "keywords": [
+    "resume",
+    "screening",
+    "ai",
+    "nlp",
+    "hiring",
+    "skill-matching"
+  ],
+  "author": "Gowjesh",
+  "license": "MIT"
+}

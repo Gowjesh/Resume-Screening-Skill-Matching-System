@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+sentence-transformers
+torch
+python-multipart
+pdfplumber
+python-docx
+openpyxl
+requests

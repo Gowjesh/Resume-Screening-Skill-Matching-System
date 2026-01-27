@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Resume Matcher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Resume Matcher</h1>
+    <p>Upload resumes and a job description to find the best matches.</p>
+  </header>
+  <main>
+    <section id="job" class="card">
+      <h2>Job Description</h2>
+      <textarea id="jobDescription" placeholder="Describe the role you're hiring for..."></textarea>
+    </section>
+    <section id="upload" class="card">
+      <h2>Upload Resumes</h2>
+      <div class="upload-options">
+        <div class="upload-option" onclick="triggerTypeUpload('.pdf,.docx,.doc,.txt,.zip')">
+          <div class="upload-icon"></div>
+          <div class="upload-text">
+            <div class="upload-title">Choose Files</div>
+            <div class="upload-subtitle">PDF, Word, Text, or ZIP files</div>
+          </div>
+        </div>
+        <div class="upload-option" onclick="toggleDriveInput()">
+          <div class="upload-icon"></div>
+          <div class="upload-text">
+            <div class="upload-title">Google Drive Link</div>
+            <div class="upload-subtitle">Excel sheet or individual files</div>
+          </div>
+        </div>
+      </div>
+      <div id="driveLinkEntry" class="drive-link-section hidden">
+        <input type="text" id="excelDriveLink" placeholder="Paste Google Drive link here..." />
+        <button onclick="addLinkConfirm()">Add Link</button>
+      </div>
+      <div id="selectedFiles" class="selected-files-section hidden">
+        <h3>Selected Files</h3>
+        <div id="filesList" class="files-list"></div>
+      </div>
+      <div id="filePreviewSection" class="file-preview-section hidden">
+        <h3>File Preview</h3>
+        <div id="fileGrid" class="file-grid"></div>
+      </div>
+    </section>
+    <section class="analyze-section">
+      <button id="analyzeBtn" class="analyze-btn" onclick="matchFolder()">
+        <span class="analyze-text">Analyze Resumes</span>
+        <span class="analyze-arrow"></span>
+      </button>
+      <div class="options-row">
+        <div class="option-item">
+          <label for="topLimit">Show top results:</label>
+          <input type="number" id="topLimit" value="10" min="1" max="100" />
+        </div>
+      </div>
+    </section>
+    <div id="loading" class="loading-section hidden">
+      <div class="loading-spinner"></div>
+      <p>Analyzing resumes... Please wait.</p>
+    </div>
+    <section id="result" class="results-section">
+      <div class="results-header">
+        <h2>Analysis Results</h2>
+        <button id="downloadBtn" class="download-btn" onclick="downloadExcel()" style="display: none;">
+          Download Excel Report
+        </button>
+      </div>
+      <div id="resultsGrid" class="results-grid">
+        <div class="results-placeholder">
+          <p>No results yet. Upload resumes and click "Analyze Resumes".</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <input type="file" id="masterFileInput" multiple accept=".pdf,.docx,.doc,.txt,.zip" style="display: none;" />
+  <script src="script.js"></script>
+</body>
+</html>
